@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question behaviour type for adaptive behaviour with all or nothing grading
+ * Question behaviour type for immediate feedback behaviour with all or nothing grading
  *
- * @package    qbehaviour_adaptiveallnothing
+ * @package    qbehaviour_immediateallnothing
  * @copyright  2015 onward Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once(dirname(__FILE__) . '/../adaptive/behaviourtype.php');
+require_once(dirname(__FILE__) . '/../immediatefeedback/behaviourtype.php');
 
-class qbehaviour_adaptiveallnothing_type extends qbehaviour_adaptive_type {
+class qbehaviour_immediateallnothing_type extends qbehaviour_immediatefeedback_type {
 }

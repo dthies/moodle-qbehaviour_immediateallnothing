@@ -15,25 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Renderer for outputting parts of a question belonging to immediate
- * feedback all or nothing behaviour.
+ * Strings for component 'qbehaviour_immediateallnothing', language 'en'.
  *
  * @package    qbehaviour
  * @subpackage immediateallnothing
- * @copyright  2015 onward Daniel Thies <dethies@gmail.com>
+ * @copyright  2015 Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-defined('MOODLE_INTERNAL') || die();
-
-require_once(dirname(__FILE__) . '/../immediatefeedback/renderer.php');
-
-/**
- * Renderer for outputting parts of a question belonging to immediate feedback (all-or-nothing) behaviour.
- *
- * @copyright  2015 onward Daniel Thies <dethies@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-class qbehaviour_immediateallnothing_renderer extends qbehaviour_immediatefeedback_renderer {
-}
+$string['pluginname'] = 'Immediate feedback (all or nothing)';
+$string['privacy:metadata'] = 'The Immediate feedback (all-or-nothing) question behaviour plugin does not store any personal data.';

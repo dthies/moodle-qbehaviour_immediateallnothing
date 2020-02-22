@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy Subsystem implementation for qbehaviour_adaptiveallnothing.
+ * Privacy Subsystem implementation for qbehaviour_immediateallnothing.
  *
- * @package    qbehaviour_adaptiveallnothing
- * @copyright  2018 Daniel Thies <dethies@gmail.com>
+ * @package    qbehaviour_immediateallnothing
+ * @copyright  2018 onward Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qbehaviour_adaptiveallnothing\privacy;
+namespace qbehaviour_immediateallnothing\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Privacy Subsystem for qbehaviour_adaptiveallnothing implementing null_provider.
+ * Privacy Subsystem for qbehaviour_immediateallnothing implementing null_provider.
  *
- * @copyright   2018 Daniel Thies <dethies@gmail.com>
+ * @copyright   2018 onward Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\null_provider {

@@ -15,61 +15,62 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question behaviour for adaptive mode with no partial credit.
+ * Question behaviour for immediate mode with no partial credit.
  *
  * @package    qbehaviour
- * @subpackage adaptiveallnothing
+ * @subpackage immediateallnothing
  * @copyright  2015 onward Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once(dirname(__FILE__) . '/../adaptive/behaviour.php');
+require_once(dirname(__FILE__) . '/../immediatefeedback/behaviour.php');
 
 /**
- * Question behaviour for adaptive mode (all-or-nothing).
+ * Question behaviour for immediate feedback mode (all-or-nothing).
  *
- * This is same as adaptive except no credit is given for partially correct
+ * This is same as immediate feedback except no credit is given for partially correct
  * responses.
  *
  * @copyright  2015 onward Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qbehaviour_adaptiveallnothing extends qbehaviour_adaptive {
-    protected function adjusted_fraction($fraction, $prevtries) {
-        return question_state::graded_state_for_fraction($fraction) ==
-                question_state::$gradedright ? $fraction - $this->question->penalty * $prevtries: 0;
-    }
+class qbehaviour_immediateallnothing extends qbehaviour_immediatefeedback {
 
-    public function get_state_string($showcorrectness) {
-        if ($this->qa->get_state()->is_partially_correct()) {
-            return question_state::$gradedwrong->default_string($showcorrectness);
-        }
-        return $this->qa->get_state()->default_string($showcorrectness);
-    }
-
-    public function get_adaptive_marks() {
-        $gradedstep = $this->get_graded_step();
-
-        // If not partially correct fall back to parent.
-        if (empty($gradedstep) ||
-                question_state::graded_state_for_fraction($gradedstep->get_behaviour_var('_rawfraction'))
-                     == question_state::$gradedright) {
-            return parent::get_adaptive_marks();
+    public function process_submit(question_attempt_pending_step $pendingstep) {
+        if ($this->qa->get_state()->is_finished()) {
+            return question_attempt::DISCARD;
         }
 
-        // Set state to wrong answer since it is partially correct.
-        $state = question_state::$gradedwrong;
+        if (!$this->is_complete_response($pendingstep)) {
+            $pendingstep->set_state(question_state::$invalid);
 
-        // Prepare the grading details.
-        $details = $this->adaptive_mark_details_from_step($gradedstep, $state, $this->qa->get_max_mark(), $this->question->penalty);
-
-        // Override raw score to show no credit.
-        $details->rawmark = 0;
-
-        $details->improvable = $this->is_state_improvable($this->qa->get_state());
-        return $details;
+        } else {
+            $response = $pendingstep->get_qt_data();
+            list($fraction, $state) = $this->question->grade_response($response);
+            $pendingstep->set_fraction($fraction == 1);
+            $pendingstep->set_state($state);
+            $pendingstep->set_new_response_summary($this->question->summarise_response($response));
+        }
+        return question_attempt::KEEP;
     }
 
+    public function process_finish(question_attempt_pending_step $pendingstep) {
+        if ($this->qa->get_state()->is_finished()) {
+            return question_attempt::DISCARD;
+        }
+
+        $response = $this->qa->get_last_step()->get_qt_data();
+        if (!$this->question->is_gradable_response($response)) {
+            $pendingstep->set_state(question_state::$gaveup);
+
+        } else {
+            list($fraction, $state) = $this->question->grade_response($response);
+            $pendingstep->set_fraction($fraction == 1.0);
+            $pendingstep->set_state($state);
+        }
+        $pendingstep->set_new_response_summary($this->question->summarise_response($response));
+        return question_attempt::KEEP;
+    }
 }

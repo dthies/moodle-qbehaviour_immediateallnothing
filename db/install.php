@@ -15,13 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'qbehaviour_adaptiveallnothing', language 'en'.
- *
- * @package    qbehaviour
- * @subpackage adaptiveallnothing
- * @copyright  2015 Daniel Thies <dethies@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Post-install script for Immediate all-or-nothing question behaviour.
+ * @package   qbehaviour_immediateallnothing
+ * @copyright 2020 Daniel Thies
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Adaptive mode (all or nothing)';
-$string['privacy:metadata'] = 'The Adaptive mode (all-or-nothing) question behaviour plugin does not store any personal data.';
+
+defined('MOODLE_INTERNAL') || die();
+
+
+/**
+ * Post-install script
+ */
+function xmldb_qbehaviour_immediateallnothing_install() {
+}
