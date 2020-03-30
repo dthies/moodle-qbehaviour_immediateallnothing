@@ -1,5 +1,5 @@
 @qbehaviour @qbehaviour_immediateallnothing
-Feature: Preview a Multiple choice question
+Feature: Preview a Multiple choice question with Immediat feedback all or nothing behaviour
   As a teacher
   In order to check my questions will work with Immediate feedback all or nothing behaviour
   I need to preview them with Immediate feedback all or nothing behaviour
