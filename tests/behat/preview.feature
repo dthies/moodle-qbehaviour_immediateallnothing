@@ -1,4 +1,4 @@
-@qtype @qbehaviour_immediateallnothing
+@qbehaviour @qbehaviour_immediateallnothing
 Feature: Preview a Multiple choice question
   As a teacher
   In order to check my questions will work with Immediate feedback all or nothing behaviour
