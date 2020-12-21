@@ -30,8 +30,8 @@ Feature: Preview a Multiple choice question with Immediat feedback all or nothin
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback (all or nothing)"
     And I press "Start again with these options"
-    And I click on "One" "checkbox"
-    And I click on "Two" "checkbox"
+    And I click on "One" "text"
+    And I click on "Two" "text"
     And I press "Submit and finish"
     Then I should see "One is odd"
     And I should see "Two is even"
@@ -45,8 +45,8 @@ Feature: Preview a Multiple choice question with Immediat feedback all or nothin
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback (all or nothing)"
     And I press "Start again with these options"
-    And I click on "One" "checkbox"
-    And I click on "Three" "checkbox"
+    And I click on "One" "text"
+    And I click on "Three" "text"
     And I press "Submit and finish"
     Then I should see "One is odd"
     And I should see "Three is odd"
