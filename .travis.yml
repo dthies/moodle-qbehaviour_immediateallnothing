@@ -68,7 +68,7 @@ before_install:
   - nvm use 14.1
   - npm install -g grunt-cli
   - cd ../..
-  - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci
+  - composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
 
 install:
